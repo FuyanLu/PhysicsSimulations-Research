@@ -1,0 +1,222 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6031,        212]
+NotebookOptionsPosition[      5224,        180]
+NotebookOutlinePosition[      5569,        195]
+CellTagsIndexPosition[      5526,        192]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  StyleBox[
+   RowBox[{"Define", " ", "the", " ", "dispersion", " ", "relation"}], 
+   "Subsection"]}]], "Input",
+ CellChangeTimes->{{3.615287667350072*^9, 3.615287698857073*^9}, {
+  3.615287798606572*^9, 3.615287819371416*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"EE", "[", 
+    RowBox[{"a_", ",", "b_", ",", "kx_", ",", "ky_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"-", "2"}], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Cos", "[", 
+       RowBox[{"kx", " ", "a"}], "]"}], "+", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"ky", " ", "b"}], "]"}]}], ")"}]}]}], ";"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"F", "[", 
+   RowBox[{"A_", ",", "B_"}], "]"}], ":=", 
+  RowBox[{"EE", "[", 
+   RowBox[{"1", ",", "1", ",", "A", ",", "B"}], "]"}]}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Built a vector to store the states number\
+\>", "Subsection",
+ CellChangeTimes->{{3.6152878265451984`*^9, 3.615287862439128*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Array", "[", 
+   RowBox[{"Eee", ",", "200"}], "]"}], "\[IndentingNewLine]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nn", "=", "1"}], ";", 
+  RowBox[{"While", "[", 
+   RowBox[{
+    RowBox[{"nn", "<", "201"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Eee", "[", "nn", "]"}], "=", "0"}], ";", 
+     RowBox[{"nn", "++"}]}]}], "]"}]}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Calculate the how many states in one small energy interval.\
+\>", "Subsection",
+ CellChangeTimes->{{3.6152878725878973`*^9, 3.615287937597233*^9}}],
+
+Cell[BoxData[
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "0"}], ",", 
+   RowBox[{"i", "<=", "200"}], ",", 
+   RowBox[{"i", "++"}], ",", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"j", "=", "0"}], ",", 
+     RowBox[{"j", "\[LessEqual]", "200"}], ",", 
+     RowBox[{"j", "++"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"n", "=", "1"}], ";", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{"n", "<", "201"}], ",", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"F", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"i", " ", 
+                   RowBox[{"Pi", "/", "100"}]}], "-", "Pi"}], ",", 
+                 RowBox[{
+                  RowBox[{"j", " ", 
+                   RowBox[{"Pi", "/", "100"}]}], "-", "Pi"}]}], "]"}], 
+               "\[GreaterEqual]", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"n", "/", "25"}], "-", "4"}], ")"}]}], "&&", 
+              RowBox[{
+               RowBox[{"F", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"i", " ", 
+                   RowBox[{"Pi", "/", "100"}]}], "-", "Pi"}], ",", 
+                 RowBox[{
+                  RowBox[{"j", " ", 
+                   RowBox[{"Pi", "/", "100"}]}], "-", "Pi"}]}], "]"}], "<", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"n", "+", "1"}], ")"}], "/", "25"}], "-", "4"}], 
+                ")"}]}]}], ",", 
+             RowBox[{
+              RowBox[{"Eee", "[", "n", "]"}], "++"}]}], "]"}], "}"}], ";", 
+          RowBox[{"n", "++"}]}]}], "]"}]}], "}"}]}], "]"}]}], "]"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Plot", "Subsection",
+ CellChangeTimes->{{3.615287959287693*^9, 3.6152879728647447`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{"Eee", "[", "i", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "0", ",", "200"}], "}"}]}], "]"}], "]"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Smooth plot (average the five nearby states)\
+\>", "Subsection",
+ CellChangeTimes->{{3.615287977526853*^9, 3.6152880155782204`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Eee", "[", "i", "]"}], "+", 
+         RowBox[{"Eee", "[", 
+          RowBox[{"i", "+", "1"}], "]"}], "+", 
+         RowBox[{"Eee", "[", 
+          RowBox[{"i", "+", "2"}], "]"}], "+", 
+         RowBox[{"Eee", "[", 
+          RowBox[{"i", "+", "3"}], "]"}], "+", 
+         RowBox[{"Eee", "[", 
+          RowBox[{"i", "+", "4"}], "]"}]}], ")"}], "/", "5"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "0", ",", "200"}], "}"}]}], "]"}], "]"}]], "Input"]
+}, Open  ]]
+},
+WindowSize->{707, 504},
+WindowMargins->{{Automatic, 187}, {Automatic, -1}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 275, 6, 56, "Input"],
+Cell[835, 28, 365, 12, 31, "Input"],
+Cell[1203, 42, 177, 5, 31, "Input"],
+Cell[CellGroupData[{
+Cell[1405, 51, 139, 3, 49, "Subsection"],
+Cell[1547, 56, 122, 3, 52, "Input"],
+Cell[1672, 61, 266, 9, 31, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1975, 75, 157, 3, 49, "Subsection"],
+Cell[2135, 80, 1838, 52, 132, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4010, 137, 94, 1, 49, "Subsection"],
+Cell[4107, 140, 265, 8, 31, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4409, 153, 142, 3, 49, "Subsection"],
+Cell[4554, 158, 654, 19, 52, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

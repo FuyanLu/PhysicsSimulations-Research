@@ -1,0 +1,1 @@
+struct State { long stateinbinary; int stateinarray[15]; double value; int link[15]; int linknumber; };
